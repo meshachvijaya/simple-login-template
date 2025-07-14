@@ -39,12 +39,13 @@ It uses **Spring Security** with session-based authentication and minimal config
 
 ## Sample Register Payload:
 
+```json
 {
   "username": "johndoe",
   "email": "johndoe@example.com",
-  "password": "securePassword123"
+  "password": "securePassword123#"
 }
-
+```
 ## The following features are planned and will be added gradually:
 - Role-based access control
 - JWT authentication support
