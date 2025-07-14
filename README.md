@@ -27,6 +27,7 @@ It uses **Spring Security** with session-based authentication and minimal config
 - ✅ Passwords are hashed using BCrypt
 - ✅ Secure logout with JSON response
 - ✅ Minimal configuration for fast setup
+- ✅ Uppercase, lowercase, symbol, number, and minimal character
 
 ---
 
@@ -45,7 +46,6 @@ POST	/logout		Logout user (clears session)
 }
 
 ## The following features are planned and will be added gradually:
-- Uppercase, lowercase, symbol, number, and minimal character (On-progress)
 - Role-based access control
 - JWT authentication support
 - User profile endpoint
