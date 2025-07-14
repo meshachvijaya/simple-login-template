@@ -67,8 +67,8 @@ public class UserController {
             return ResponseEntity.badRequest().body(Map.of("error", "Email, Username and Password can't be empty"));
         }
 
-        // Password must contain at least 8 char, uppercase, lowercase and number
-        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$";
+        // Password must contain at least 8 char, uppercase, lowercase, number and symbol
+        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z0-9]).{8,}$";
         if (!password.matches(passwordPattern)) {
             return ResponseEntity.badRequest().body(Map.of("error", "Password must contain at least 8 charater, uppercase, lowercase and number"));
         }
