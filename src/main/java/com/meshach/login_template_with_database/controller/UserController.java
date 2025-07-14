@@ -58,13 +58,19 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Map<String, String> userData) {
-        String username = userData.get("username");
         String email = userData.get("email");
+        String username = userData.get("username");
         String password = userData.get("password");
+        String confirmPassword = userData.get("confirmPassword");
 
         // Validate, username, email and password can't be empty
-        if (email == null || email.trim().isEmpty() || username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty()) {
+        if (email == null || email.trim().isEmpty() || username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty() || confirmPassword == null || confirmPassword.trim().isEmpty()) {
             return ResponseEntity.badRequest().body(Map.of("error", "Email, Username and Password can't be empty"));
+        }
+
+        // Check password match
+        if (!password.equals(confirmPassword)) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Password does not match!"));
         }
 
         // Password must contain at least 8 char, uppercase, lowercase, number and symbol
