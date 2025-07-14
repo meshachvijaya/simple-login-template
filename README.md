@@ -34,7 +34,7 @@ It uses **Spring Security** with session-based authentication and minimal config
 ## 🔐 API Endpoints
 Method	Endpoint	Description
 POST	/register	Register a new user
-POST	/login		Login using username+pass
+POST	/login		Login using email+username+pass
 POST	/logout		Logout user (clears session)
 
 ## Sample Register Payload:
