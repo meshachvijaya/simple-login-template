@@ -62,10 +62,23 @@ public class UserController {
         String email = userData.get("email");
         String password = userData.get("password");
 
+        // Validate, username, email and password can't be empty
+        if (email == null || email.trim().isEmpty() || username == null || username.trim().isEmpty() || password == null || password.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Email, Username and Password can't be empty"));
+        }
+
+        // Password must contain at least 8 char, uppercase, lowercase and number
+        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$";
+        if (!password.matches(passwordPattern)) {
+            return ResponseEntity.badRequest().body(Map.of("error", "Password must contain at least 8 charater, uppercase, lowercase and number"));
+        }
+
+        // Validate registered email
         if (userRepository.findByEmail(email).isPresent()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", "Email already exist"));
         }
 
+        // Validate registered username
         if (userRepository.findByUsername(username).isPresent()) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", "User already exist"));
         }
